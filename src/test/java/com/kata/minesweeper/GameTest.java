@@ -52,4 +52,28 @@ class GameTest {
         // then
         assertThat(game.getState()).isEqualTo(GameState.IN_PROGRESS);
     }
+
+    @Test
+    @DisplayName("GIVEN new game WHEN starting game THEN should print new board and starting message")
+    void whenStartGame_thenShouldPrintBoardAndMessage() {
+        // given
+        Game game = new Game();
+
+        // when
+        System.setOut(new PrintStream(outContent));
+        game.start();
+
+        // then
+        assertThat(outContent.toString())
+                .contains("+-+-+-+" + eol
+                        + "| | | |" + eol
+                        + "+-+-+-+" + eol
+                        + "| | | |" + eol
+                        + "+-+-+-+" + eol
+                        + "| | | |" + eol
+                        + "+-+-+-+");
+        assertThat(outContent.toString())
+                .contains(sandbox + " Game created");
+        System.setOut(originalOut);
+    }
 }
