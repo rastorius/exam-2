@@ -2,6 +2,7 @@ package com.kata.minesweeper;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 class Game {
     public static final String SEPARATOR = "+-+-+-+";
@@ -9,6 +10,18 @@ class Game {
     private final String eol = System.lineSeparator();
     private final SquareState[] visibleBoard = new SquareState[9];
     private final SquareValue[] actualBoard = new SquareValue[9];
+    private final Map<Integer, List<Integer>> neighbourPositions =
+            Map.of(
+                    0, List.of(1, 3, 4),
+                    1, List.of(0, 2, 3, 4, 5),
+                    2, List.of(1, 4, 5),
+                    3, List.of(0, 1, 4, 6, 7),
+                    4, List.of(0, 1, 2, 3, 5, 6, 7, 8),
+                    5, List.of(1, 2, 4, 7, 8),
+                    6, List.of(3, 4, 7),
+                    7, List.of(3, 4, 5, 6, 8),
+                    8, List.of(4, 5, 7)
+            );
     private GameState state;
 
     Game() {
@@ -22,6 +35,36 @@ class Game {
                 actualBoard[i] = SquareValue.EMPTY;
             }
         }
+
+        updateSquaresWithBombsAround();
+    }
+
+    private void updateSquaresWithBombsAround() {
+        for (var i = 0; i < 9; ++i) {
+            if (actualBoard[i] != SquareValue.MINE) {
+                int numberOfBombsAround = getNumberOfBombsAround(i);
+                setSquareWithBombAroundValue(i, numberOfBombsAround);
+            }
+        }
+    }
+
+    private void setSquareWithBombAroundValue(int i, int numberOfBombsAround) {
+        if (numberOfBombsAround == 1) {
+            actualBoard[i] = SquareValue.ONE;
+        }
+        if (numberOfBombsAround == 2) {
+            actualBoard[i] = SquareValue.TWO;
+        }
+        if (numberOfBombsAround == 3) {
+            actualBoard[i] = SquareValue.THREE;
+        }
+    }
+
+    private int getNumberOfBombsAround(int position) {
+        return (int) neighbourPositions.get(position)
+                .stream()
+                .filter(i -> actualBoard[i] == SquareValue.MINE)
+                .count();
     }
 
     private String getSquarePrintValue(int position) {
@@ -48,6 +91,8 @@ class Game {
         if (actualBoard[position] == SquareValue.MINE) {
             System.out.println(SANDBOX + " BOOM! - Game Over");
             state = GameState.GAME_OVER;
+        } else if (actualBoard[position] != SquareValue.EMPTY) {
+            System.out.println(SANDBOX + " " + actualBoard[position].getValue() + " bombs around your square");
         }
     }
 

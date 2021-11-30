@@ -34,6 +34,6 @@
 
 🟡 📘 #2 Implement steps
 
-- 🟡 #3 Scenario
+- 🟢 #3 Scenario
 - 🔴 #4 Scenario
 
