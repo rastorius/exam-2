@@ -22,12 +22,16 @@ class Game {
                     7, List.of(3, 4, 5, 6, 8),
                     8, List.of(4, 5, 7)
             );
+    private final int numberOfBombs;
     private GameState state;
 
     Game() {
+        numberOfBombs = 0;
     }
 
     Game(List<Integer> bombPositions) {
+        numberOfBombs = bombPositions.size();
+
         for (var i = 0; i < 9; ++i) {
             if (bombPositions.contains(i)) {
                 actualBoard[i] = SquareValue.MINE;
@@ -92,8 +96,28 @@ class Game {
             System.out.println(SANDBOX + " BOOM! - Game Over");
             state = GameState.GAME_OVER;
         } else if (actualBoard[position] != SquareValue.EMPTY) {
+            checkAndHandleVictory(position);
+        }
+    }
+
+    private void checkAndHandleVictory(int position) {
+        if ((9 - numberOfBombs) == getNumberOfCleanedSquares()) {
+            state = GameState.VICTORY;
+            System.out.println(SANDBOX + " the land is cleared! GOOD JOB!");
+        } else {
             System.out.println(SANDBOX + " " + actualBoard[position].getValue() + " bombs around your square");
         }
+
+    }
+
+    private int getNumberOfCleanedSquares() {
+        int counter = 0;
+        for (int i = 0; i < 9; ++i) {
+            if (visibleBoard[i] == SquareState.STEPPED) {
+                ++counter;
+            }
+        }
+        return counter;
     }
 
     public void start() {
