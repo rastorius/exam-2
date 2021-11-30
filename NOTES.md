@@ -49,4 +49,4 @@
 
 - 🟢 #1 Scenario
 
-🟡 📘 #4 Set up bot game
+🟢 📘 #4 Set up bot game
