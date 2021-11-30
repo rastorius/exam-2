@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -75,5 +76,31 @@ class GameTest {
         assertThat(outContent.toString())
                 .contains(sandbox + " Game created");
         System.setOut(originalOut);
+    }
+
+    @Test
+    @DisplayName("GIVEN board with bomb WHEN stepping on bomb THEN should print updated board and game over message")
+    void gameOver_acceptanceTest() {
+        // given
+        Game game = new Game(List.of(4));
+
+        // when
+        System.setOut(new PrintStream(outContent));
+        game.step(4);
+
+        // then
+        assertThat(outContent.toString())
+                .contains("+-+-+-+" + eol
+                        + "| | | |" + eol
+                        + "+-+-+-+" + eol
+                        + "| |X| |" + eol
+                        + "+-+-+-+" + eol
+                        + "| | | |" + eol
+                        + "+-+-+-+");
+        assertThat(outContent.toString())
+                .contains(sandbox + " BOOM! - Game Over");
+        System.setOut(originalOut);
+
+        System.out.println(outContent);
     }
 }
