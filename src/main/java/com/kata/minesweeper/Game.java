@@ -91,23 +91,54 @@ class Game {
 
     public void step(int position) {
         visibleBoard[position] = SquareState.STEPPED;
-        printBoard();
+
         if (actualBoard[position] == SquareValue.MINE) {
-            System.out.println(SANDBOX + " BOOM! - Game Over");
-            state = GameState.GAME_OVER;
+            printBoard();
+            handleGameOver();
         } else if (actualBoard[position] != SquareValue.EMPTY) {
+            printBoard();
             checkAndHandleVictory(position);
+        } else {
+            massiveClear(position);
+            printBoard();
+            if (isVictory()) {
+                handleVictory();
+            }
         }
     }
 
+    private boolean isVictory() {
+        return (9 - numberOfBombs) == getNumberOfCleanedSquares();
+    }
+
+    private void massiveClear(int position) {
+        visibleBoard[position] = SquareState.STEPPED;
+        for (int i : neighbourPositions.get(position)) {
+            if (actualBoard[i] == SquareValue.EMPTY && visibleBoard[i] != SquareState.STEPPED) {
+                massiveClear(i);
+            } else {
+                visibleBoard[i] = SquareState.STEPPED;
+            }
+        }
+    }
+
+    private void handleGameOver() {
+        System.out.println(SANDBOX + " BOOM! - Game Over");
+        state = GameState.GAME_OVER;
+    }
+
     private void checkAndHandleVictory(int position) {
-        if ((9 - numberOfBombs) == getNumberOfCleanedSquares()) {
-            state = GameState.VICTORY;
-            System.out.println(SANDBOX + " the land is cleared! GOOD JOB!");
+        if (isVictory()) {
+            handleVictory();
         } else {
             System.out.println(SANDBOX + " " + actualBoard[position].getValue() + " bombs around your square");
         }
 
+    }
+
+    private void handleVictory() {
+        state = GameState.VICTORY;
+        System.out.println(SANDBOX + " the land is cleared! GOOD JOB!");
     }
 
     private int getNumberOfCleanedSquares() {

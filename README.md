@@ -106,12 +106,6 @@ victory message
 **WHEN** stepping on one of winning squares  
 **THEN** should clear every square around it recursively and game state should be VICTORY
 
-#### 📜 #6 Scenario
-
-**GIVEN** a board with massive cleaning possible without victory  
-**WHEN** stepping on one of the "empty" squares  
-**THEN** should clear every square around it recursively and game state should be IN_PROGRESS
-
 ### 📘 #3 Implement marks
 
 As a gamer  
