@@ -4,8 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 class Game {
+    public static final String SEPARATOR = "+-+-+-+";
+    private static final String SANDBOX = "[Sandbox 3x3]";
     private final String eol = System.lineSeparator();
-    private final String sandbox = "[Sandbox 3x3]";
     private final SquareState[] visibleBoard = new SquareState[9];
     private final SquareValue[] actualBoard = new SquareValue[9];
     private GameState state;
@@ -14,7 +15,7 @@ class Game {
     }
 
     Game(List<Integer> bombPositions) {
-        for (int i = 0; i < 9; ++i) {
+        for (var i = 0; i < 9; ++i) {
             if (bombPositions.contains(i)) {
                 actualBoard[i] = SquareValue.MINE;
             } else {
@@ -32,20 +33,20 @@ class Game {
     }
 
     void printBoard() {
-        System.out.println("+-+-+-+" + eol
+        System.out.println(SEPARATOR + eol
                 + "|" + getSquarePrintValue(6) + "|" + getSquarePrintValue(7) + "|" + getSquarePrintValue(8) + "|" + eol
-                + "+-+-+-+" + eol
+                + SEPARATOR + eol
                 + "|" + getSquarePrintValue(3) + "|" + getSquarePrintValue(4) + "|" + getSquarePrintValue(5) + "|" + eol
-                + "+-+-+-+" + eol
+                + SEPARATOR + eol
                 + "|" + getSquarePrintValue(0) + "|" + getSquarePrintValue(1) + "|" + getSquarePrintValue(2) + "|" + eol
-                + "+-+-+-+" + eol);
+                + SEPARATOR + eol);
     }
 
     public void step(int position) {
         visibleBoard[position] = SquareState.STEPPED;
         printBoard();
         if (actualBoard[position] == SquareValue.MINE) {
-            System.out.println(sandbox + " BOOM! - Game Over");
+            System.out.println(SANDBOX + " BOOM! - Game Over");
             state = GameState.GAME_OVER;
         }
     }
@@ -55,7 +56,7 @@ class Game {
         state = GameState.IN_PROGRESS;
 
         printBoard();
-        System.out.println(sandbox + " Game created");
+        System.out.println(SANDBOX + " Game created");
     }
 
     public GameState getState() {
