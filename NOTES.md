@@ -48,3 +48,5 @@
 🟢 📘 #3 Implement marks
 
 - 🟢 #1 Scenario
+
+🟡 📘 #4 Set up bot game

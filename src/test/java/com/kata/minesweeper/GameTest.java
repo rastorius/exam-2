@@ -359,4 +359,20 @@ class GameTest {
 
         System.out.println(outContent);
     }
+
+    @Test
+    @DisplayName("GIVEN new board"
+            + " WHEN isPositionFree for any position"
+            + " THEN should return true")
+    void hiddenSquareShouldBeFree() {
+        // given
+        Game game = new Game(List.of(1));
+        game.start();
+
+        // when
+        boolean result = game.isPositionFree(1);
+
+        // then
+        assertThat(result).isTrue();
+    }
 }
