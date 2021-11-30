@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id 'org.sonarqube' version '3.3'
+}
+
+group = 'com.kata'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+def junitVersion = '5.8.1'
+def assertjVersion = '3.21.0'
+def mockitoVersion = '4.1.0'
+
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:${junitVersion}"))
+    testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
+    testImplementation("org.assertj:assertj-core:${assertjVersion}")
+    testImplementation ("org.mockito:mockito-core:${mockitoVersion}")
+    testImplementation ("org.mockito:mockito-inline:${mockitoVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+checkstyle {
+    toolVersion '9.2'
+}
+
+sonarqube {
+    properties {
+        property 'sonar.projectKey', 'rastorius_exam-2'
+        property 'sonar.organization', 'xp-farm'
+        property 'sonar.host.url', 'https://sonarcloud.io'
+    }
+}
