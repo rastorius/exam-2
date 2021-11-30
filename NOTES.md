@@ -2,7 +2,7 @@
 
 ### Pomodoro #1
 
-🔴 📘 #1 Game board creation
+🟡 📘 #1 Game board creation
 
 - 🔴 #1 Scenario
 - 🔴 #2 Scenario
