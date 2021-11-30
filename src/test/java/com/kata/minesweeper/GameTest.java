@@ -375,4 +375,21 @@ class GameTest {
         // then
         assertThat(result).isTrue();
     }
+
+    @Test
+    @DisplayName("GIVEN stepped positon"
+            + " WHEN isPositionFree for that position"
+            + " THEN should return false")
+    void steppedSquareShouldNotBeFree() {
+        // given
+        Game game = new Game(List.of(1));
+        game.start();
+        game.step(2);
+
+        // when
+        boolean result = game.isPositionFree(2);
+
+        // then
+        assertThat(result).isFalse();
+    }
 }
