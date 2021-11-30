@@ -145,4 +145,31 @@ class GameTest {
         System.setOut(originalOut);
         assertThat(game.getState()).isEqualTo(GameState.GAME_OVER);
     }
+
+    @Test
+    @DisplayName("GIVEN bombs on (1,0), (0,1) and (1,1) WHEN stepping on (0,0) THEN should print updated board and mines around you message")
+    void neighbourBombs_acceptanceTest() {
+        // given
+        Game game = new Game(List.of(1, 3, 4));
+        game.start();
+
+        // when
+        System.setOut(new PrintStream(outContent));
+        game.step(0);
+
+        // then
+        assertThat(outContent.toString())
+                .contains("+-+-+-+" + eol
+                        + "| | | |" + eol
+                        + "+-+-+-+" + eol
+                        + "| | | |" + eol
+                        + "+-+-+-+" + eol
+                        + "|3| | |" + eol
+                        + "+-+-+-+" + eol);
+        assertThat(outContent.toString())
+                .contains(sandbox + " 3 bombs around your square");
+        System.setOut(originalOut);
+
+        System.out.println(outContent);
+    }
 }
