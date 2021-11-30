@@ -45,6 +45,6 @@
 
 ### Pomodoro #5
 
-🔴 📘 #3 Implement marks
+🟢 📘 #3 Implement marks
 
-- 🟡 #1 Scenario
+- 🟢 #1 Scenario

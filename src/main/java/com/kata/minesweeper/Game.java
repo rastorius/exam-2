@@ -90,7 +90,9 @@ class Game {
     }
 
     public void mark(int position) {
-
+        visibleBoard[position] = SquareState.MARKED;
+        printBoard();
+        System.out.println(SANDBOX + " Square flagged as bomb.");
     }
 
     public void step(int position) {
