@@ -33,7 +33,7 @@ class GameTest {
                         + "| | | |" + eol
                         + "+-+-+-+" + eol
                         + "| | | |" + eol
-                        + "+-+-+-+");
+                        + "+-+-+-+" + eol);
         assertThat(outContent.toString())
                 .contains(sandbox + " Game created");
         System.setOut(originalOut);
@@ -72,7 +72,7 @@ class GameTest {
                         + "| | | |" + eol
                         + "+-+-+-+" + eol
                         + "| | | |" + eol
-                        + "+-+-+-+");
+                        + "+-+-+-+" + eol);
         assertThat(outContent.toString())
                 .contains(sandbox + " Game created");
         System.setOut(originalOut);
@@ -85,6 +85,7 @@ class GameTest {
         Game game = new Game(List.of(4));
 
         // when
+        game.start();
         System.setOut(new PrintStream(outContent));
         game.step(4);
 
@@ -96,7 +97,7 @@ class GameTest {
                         + "| |X| |" + eol
                         + "+-+-+-+" + eol
                         + "| | | |" + eol
-                        + "+-+-+-+");
+                        + "+-+-+-+" + eol);
         assertThat(outContent.toString())
                 .contains(sandbox + " BOOM! - Game Over");
         System.setOut(originalOut);
