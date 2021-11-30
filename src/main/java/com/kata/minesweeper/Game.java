@@ -10,9 +10,6 @@ class Game {
     private final SquareValue[] actualBoard = new SquareValue[9];
     private GameState state;
 
-    {
-    }
-
     Game() {
     }
 
@@ -47,6 +44,10 @@ class Game {
     public void step(int position) {
         visibleBoard[position] = SquareState.STEPPED;
         printBoard();
+        if (actualBoard[position] == SquareValue.MINE) {
+            System.out.println(sandbox + " BOOM! - Game Over");
+            state = GameState.GAME_OVER;
+        }
     }
 
     public void start() {
