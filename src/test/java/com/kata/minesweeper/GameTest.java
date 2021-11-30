@@ -300,8 +300,8 @@ class GameTest {
     }
 
     @Test
-    @DisplayName("GIVEN(0,0) is revealed (3) and there are bombs on (1,0), (0,1) and (1,1)"
-            + " WHen marking (1,0), (0,1) and (1,1)"
+    @DisplayName("GIVEN (0,0) is revealed (3) and there are bombs on (1,0), (0,1) and (1,1)"
+            + " WHEN marking (1,0), (0,1) and (1,1)"
             + " THEN should print updated board and square flagged as mine message")
     void mark_acceptanceTest() {
         // given
@@ -323,6 +323,35 @@ class GameTest {
                         + "|+|+| |" + eol
                         + "+-+-+-+" + eol
                         + "|3|+| |" + eol
+                        + "+-+-+-+" + eol);
+        assertThat(outContent.toString())
+                .contains(sandbox + " Square flagged as bomb.");
+        System.setOut(originalOut);
+
+        System.out.println(outContent);
+    }
+
+    @Test
+    @DisplayName("GIVEN a board no steps taken"
+            + " WHEN marking a square"
+            + " THEN should print board with the square revealed (+) and square flagged as mine message")
+    void whenMarking_thenShouldUpdateBoardAndPrintMessage() {
+        // given
+        Game game = new Game(List.of(1));
+        game.start();
+
+        // when
+        System.setOut(new PrintStream(outContent));
+        game.mark(1);
+
+        // then
+        assertThat(outContent.toString())
+                .contains("+-+-+-+" + eol
+                        + "| | | |" + eol
+                        + "+-+-+-+" + eol
+                        + "| | | |" + eol
+                        + "+-+-+-+" + eol
+                        + "| |+| |" + eol
                         + "+-+-+-+" + eol);
         assertThat(outContent.toString())
                 .contains(sandbox + " Square flagged as bomb.");

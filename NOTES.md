@@ -47,4 +47,4 @@
 
 🔴 📘 #3 Implement marks
 
-- 🔴 #1 Scenario
+- 🟡 #1 Scenario
