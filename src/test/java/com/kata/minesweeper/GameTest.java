@@ -103,4 +103,27 @@ class GameTest {
 
         System.out.println(outContent);
     }
+
+    @Test
+    @DisplayName("GIVEN started game WHEN stepping THEN should print updated board")
+    void whenStep_thenShouldPrintUpdatedBoard() {
+        // given
+        Game game = new Game(List.of(2));
+        game.start();
+
+        // when
+        System.setOut(new PrintStream(outContent));
+        game.step(2);
+
+        // then
+        assertThat(outContent.toString())
+                .contains("+-+-+-+" + eol
+                        + "| | | |" + eol
+                        + "+-+-+-+" + eol
+                        + "| | | |" + eol
+                        + "+-+-+-+" + eol
+                        + "| | |X|" + eol
+                        + "+-+-+-+");
+        System.setOut(originalOut);
+    }
 }
