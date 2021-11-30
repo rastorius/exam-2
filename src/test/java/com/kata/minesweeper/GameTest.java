@@ -172,4 +172,22 @@ class GameTest {
 
         System.out.println(outContent);
     }
+
+    @Test
+    @DisplayName("GIVEN 1 bomb WHEN stepping next to bomb THEN should print mines around you message and game state should be IN_PROGRESS")
+    void whenStepNextToBomb_thenShouldPrintMessageAndUpdateState() {
+        // given
+        Game game = new Game(List.of(3));
+        game.start();
+
+        // when
+        System.setOut(new PrintStream(outContent));
+        game.step(0);
+
+        // then
+        assertThat(outContent.toString())
+                .contains(sandbox + " 1 bombs around your square");
+        System.setOut(originalOut);
+        assertThat(game.getState()).isEqualTo(GameState.IN_PROGRESS);
+    }
 }
