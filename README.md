@@ -1,12 +1,12 @@
 [![Actions Status](https://github.com/rastorius/xp-farm-test/actions/workflows/build.yml/badge.svg)](https://github.com/rastorius/xp-farm-test/actions?query=workflow%3build)
 
-[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=rastorius_xp-farm-test&metric=alert_status)](https://sonarcloud.io/dashboard?id=rastorius_xp-farm-test)
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=rastorius_exam-2&metric=alert_status)](https://sonarcloud.io/dashboard?id=rastorius_exam-2)
 
-[![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=rastorius_xp-farm-test&metric=coverage)](https://sonarcloud.io/component_measures/metric/coverage/list?id=rastorius_xp-farm-test)
+[![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=rastorius_exam-2&metric=coverage)](https://sonarcloud.io/component_measures/metric/coverage/list?id=rastorius_exam-2)
 
-[![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=rastorius_xp-farm-test&metric=bugs)](https://sonarcloud.io/component_measures/metric/reliability_rating/list?id=rastorius_xp-farm-test)
+[![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=rastorius_exam-2&metric=bugs)](https://sonarcloud.io/component_measures/metric/reliability_rating/list?id=rastorius_exam-2)
 
-[![SonarCloud Code Smells](https://sonarcloud.io/api/project_badges/measure?project=rastorius_xp-farm-test&metric=code_smells)](https://sonarcloud.io/component_measures/metric/code_smells/list?id=rastorius_xp-farm-test)
+[![SonarCloud Code Smells](https://sonarcloud.io/api/project_badges/measure?project=rastorius_exam-2&metric=code_smells)](https://sonarcloud.io/component_measures/metric/code_smells/list?id=rastorius_exam-2)
 
 # Kata and requirements
 
