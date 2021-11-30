@@ -190,4 +190,38 @@ class GameTest {
         System.setOut(originalOut);
         assertThat(game.getState()).isEqualTo(GameState.IN_PROGRESS);
     }
+
+    @Test
+    @DisplayName("GIVEN b(1,0), (0,1) and (1,1) are bombs, (0,0) is 3 "
+            + "WHEN stepping on (0,1), (1,0), (0,2), (2,0) and (2,2) "
+            + "THEN should print updated board and victory message")
+    void victory_acceptanceTest() {
+        // given
+        Game game = new Game(List.of(1, 3, 4));
+        game.start();
+        game.step(0);
+
+        // when
+        game.step(2);
+        game.step(5);
+        game.step(6);
+        game.step(7);
+        System.setOut(new PrintStream(outContent));
+        game.step(8);
+
+        // then
+        assertThat(outContent.toString())
+                .contains("+-+-+-+" + eol
+                        + "|2|2|1|" + eol
+                        + "+-+-+-+" + eol
+                        + "| | |2|" + eol
+                        + "+-+-+-+" + eol
+                        + "|3| |2|" + eol
+                        + "+-+-+-+" + eol);
+        assertThat(outContent.toString())
+                .contains(sandbox + " the land is cleared! GOOD JOB!");
+        System.setOut(originalOut);
+
+        System.out.println(outContent);
+    }
 }
