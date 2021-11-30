@@ -280,6 +280,32 @@ class GameTest {
     }
 
     @Test
+    @DisplayName("GIVEN (2,2) and (2,0) is a bomb WHEN stepping on (0,2) THEN should print updated board")
+    void massiveCleaningWithoutVictory_acceptanceTest() {
+        // given
+        Game game = new Game(List.of(6, 8));
+        game.start();
+
+
+        // when
+        System.setOut(new PrintStream(outContent));
+        game.step(2);
+
+        // then
+        assertThat(outContent.toString())
+                .contains("+-+-+-+" + eol
+                        + "| | | |" + eol
+                        + "+-+-+-+" + eol
+                        + "|1|2|1|" + eol
+                        + "+-+-+-+" + eol
+                        + "|_|_|_|" + eol
+                        + "+-+-+-+" + eol);
+        System.setOut(originalOut);
+
+        System.out.println(outContent);
+    }
+
+    @Test
     @DisplayName("GIVEN a board with massive cleaning possible with victory WHEN stepping on one of winning squares "
             + "THEN should clear every square around it recursively and game state should be VICTORY")
     void whenMassiveCleaningVictory_thenShouldPrintMessageAndUpdateState() {
