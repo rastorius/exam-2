@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'checkstyle'
     id 'org.sonarqube' version '3.3'
+    id 'jacoco'
 }
 
 group = 'com.kata'
@@ -20,8 +21,8 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:${junitVersion}"))
     testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
-    testImplementation ("org.mockito:mockito-core:${mockitoVersion}")
-    testImplementation ("org.mockito:mockito-inline:${mockitoVersion}")
+    testImplementation("org.mockito:mockito-core:${mockitoVersion}")
+    testImplementation("org.mockito:mockito-inline:${mockitoVersion}")
 }
 
 test {
@@ -39,3 +40,14 @@ sonarqube {
         property 'sonar.host.url', 'https://sonarcloud.io'
     }
 }
+
+tasks.named('sonarqube').configure {
+    dependsOn test
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+test.finalizedBy jacocoTestReport
