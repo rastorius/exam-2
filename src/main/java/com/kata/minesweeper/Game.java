@@ -89,6 +89,10 @@ class Game {
                 + SEPARATOR + eol);
     }
 
+    public void mark(int position) {
+
+    }
+
     public void step(int position) {
         visibleBoard[position] = SquareState.STEPPED;
 

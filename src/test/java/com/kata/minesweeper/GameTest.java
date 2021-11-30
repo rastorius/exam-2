@@ -298,4 +298,36 @@ class GameTest {
         System.setOut(originalOut);
         assertThat(game.getState()).isEqualTo(GameState.VICTORY);
     }
+
+    @Test
+    @DisplayName("GIVEN(0,0) is revealed (3) and there are bombs on (1,0), (0,1) and (1,1)"
+            + " WHen marking (1,0), (0,1) and (1,1)"
+            + " THEN should print updated board and square flagged as mine message")
+    void mark_acceptanceTest() {
+        // given
+        Game game = new Game(List.of(1, 3, 4));
+        game.start();
+        game.step(0);
+        game.mark(1);
+        game.mark(3);
+
+        // when
+        System.setOut(new PrintStream(outContent));
+        game.mark(4);
+
+        // then
+        assertThat(outContent.toString())
+                .contains("+-+-+-+" + eol
+                        + "| | | |" + eol
+                        + "+-+-+-+" + eol
+                        + "|+|+| |" + eol
+                        + "+-+-+-+" + eol
+                        + "|3|+| |" + eol
+                        + "+-+-+-+" + eol);
+        assertThat(outContent.toString())
+                .contains(sandbox + " Square flagged as bomb.");
+        System.setOut(originalOut);
+
+        System.out.println(outContent);
+    }
 }
