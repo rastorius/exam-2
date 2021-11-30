@@ -37,3 +37,9 @@
 - 🟢 #3 Scenario
 - 🟢 #4 Scenario
 
+### Pomodoro #5
+
+🟡 📘 #2 Implement steps
+
+- 🔴 #5 Scenario
+- 🔴 #6 Scenario
