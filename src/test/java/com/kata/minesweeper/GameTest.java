@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,16 +13,6 @@ class GameTest {
     private final PrintStream originalOut = System.out;
     private final String eol = System.lineSeparator();
     private final String sandbox = "[Sandbox 3x3]";
-
-    @BeforeEach
-    void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @AfterEach
-    void restoreStreams() {
-        System.setOut(originalOut);
-    }
 
     @Test
     @DisplayName("GIVEN new game WHEN starting game THEN should print new board and starting message")

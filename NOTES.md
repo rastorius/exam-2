@@ -4,7 +4,7 @@
 
 🟡 📘 #1 Game board creation
 
-- 🟡 #1 Scenario
+- 🟢 #1 Scenario
 - 🔴 #2 Scenario
 
 🔴 📘 #2 Implement steps
