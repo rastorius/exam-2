@@ -250,4 +250,42 @@ class GameTest {
         System.setOut(originalOut);
         assertThat(game.getState()).isEqualTo(GameState.VICTORY);
     }
+
+    /*
+    **GIVEN** no steps were taken and there is a bomb on (2,2)
+**WHEN** stepping on (0,0)
+**THEN** should print board with
+(0,1), (1,0), (0,2), (2,0) revealed (_)
+(0,0) revealed (X)
+(1,1), (2,1), (1,2) revealed (1)
+victory message
+     */
+
+    @Test
+    @DisplayName("GIVEN (2,2) is a bomb WHEN stepping on (0,0) THEN should print updated board and victory message")
+    void massiveCleaningVictory_acceptanceTest() {
+        // given
+        Game game = new Game(List.of(8));
+        game.start();
+
+
+        // when
+        System.setOut(new PrintStream(outContent));
+        game.step(0);
+
+        // then
+        assertThat(outContent.toString())
+                .contains("+-+-+-+" + eol
+                        + "|_|1| |" + eol
+                        + "+-+-+-+" + eol
+                        + "|_|1|1|" + eol
+                        + "+-+-+-+" + eol
+                        + "|_|_|_|" + eol
+                        + "+-+-+-+" + eol);
+        assertThat(outContent.toString())
+                .contains(sandbox + " the land is cleared! GOOD JOB!");
+        System.setOut(originalOut);
+
+        System.out.println(outContent);
+    }
 }
