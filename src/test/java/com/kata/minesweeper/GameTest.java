@@ -224,4 +224,30 @@ class GameTest {
 
         System.out.println(outContent);
     }
+
+    @Test
+    @DisplayName("GIVEN a board with 1 cleanable square left WHEN stepping on the cleanable square "
+            + "THEN should print victory message and game state should be VICTOR")
+    void whenVictory_thenShouldPrintMessageAndUpdateState() {
+        // given
+        Game game = new Game(List.of(4));
+        game.start();
+        game.step(0);
+        game.step(1);
+        game.step(2);
+        game.step(3);
+        game.step(5);
+        game.step(6);
+        game.step(7);
+
+        // when
+        System.setOut(new PrintStream(outContent));
+        game.step(8);
+
+        // then
+        assertThat(outContent.toString())
+                .contains(sandbox + " the land is cleared! GOOD JOB!");
+        System.setOut(originalOut);
+        assertThat(game.getState()).isEqualTo(GameState.VICTORY);
+    }
 }
