@@ -170,6 +170,6 @@ class Game {
     }
 
     public boolean isPositionFree(int position) {
-        return true;
+        return visibleBoard[position] != SquareState.STEPPED;
     }
 }
