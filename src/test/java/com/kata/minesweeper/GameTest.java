@@ -83,9 +83,9 @@ class GameTest {
     void gameOver_acceptanceTest() {
         // given
         Game game = new Game(List.of(4));
+        game.start();
 
         // when
-        game.start();
         System.setOut(new PrintStream(outContent));
         game.step(4);
 
@@ -126,5 +126,23 @@ class GameTest {
                         + "| | |X|" + eol
                         + "+-+-+-+");
         System.setOut(originalOut);
+    }
+
+    @Test
+    @DisplayName("GIVEN board with 1 bomb WHEN stepping on the bomb THEN should print game over message and game state should be GAME_OVER")
+    void whenStepOnBomb_thenShouldPrintMessageAndUpdateState() {
+        // given
+        Game game = new Game(List.of(3));
+        game.start();
+
+        // when
+        System.setOut(new PrintStream(outContent));
+        game.step(3);
+
+        // then
+        assertThat(outContent.toString())
+                .contains(sandbox + " BOOM! - Game Over");
+        System.setOut(originalOut);
+        assertThat(game.getState()).isEqualTo(GameState.GAME_OVER);
     }
 }
