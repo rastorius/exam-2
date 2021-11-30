@@ -7,6 +7,9 @@ class Game {
     private final String sandbox = "[Sandbox 3x3]";
     private GameState state;
 
+    {
+    }
+
     Game() {
     }
 
@@ -14,6 +17,13 @@ class Game {
     }
 
     public void step(int position) {
+        System.out.println("+-+-+-+" + eol
+                + "| | | |" + eol
+                + "+-+-+-+" + eol
+                + "| | | |" + eol
+                + "+-+-+-+" + eol
+                + "| | |X|" + eol
+                + "+-+-+-+" + eol);
     }
 
     public void start() {

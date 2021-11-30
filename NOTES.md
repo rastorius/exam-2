@@ -19,7 +19,7 @@
 
 🟡 📘 #2 Implement steps
 
-- 🟡 #1 Scenario
+- 🟢 #1 Scenario
 - 🔴 #2 Scenario
 - 🔴 #3 Scenario
 
