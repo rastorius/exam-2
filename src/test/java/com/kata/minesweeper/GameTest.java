@@ -48,8 +48,20 @@ class GameTest {
         assertThat(outContent.toString())
                 .contains(sandbox + " Game created");
         System.setOut(originalOut);
-        
+
         System.out.println(outContent);
     }
 
+    @Test
+    @DisplayName("GIVEN new game WHEN starting game THEN game state should be IN_PROGRESS")
+    void whenStartGame_thenStateShouldBeInProgress() {
+        // given
+        Game game = new Game();
+
+        // when
+        game.start();
+
+        // then
+        assertThat(game.getState()).isEqualTo(GameState.IN_PROGRESS);
+    }
 }
