@@ -1,4 +1,4 @@
-# Plans
+# Plansa
 
 ### Pomodoro #1
 
